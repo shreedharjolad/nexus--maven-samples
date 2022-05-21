@@ -1,12 +1,10 @@
 pipeline{
     agent any
     stages{
-        stage("Sonarqube analysis"){
+        stage("Build + UT"){
             steps{
                 script{
-                withSonarQubeEnv(credentialsId: 'new_sonar') {
-                     sh 'mvn sonar:sonar' 
-                  }
+                     sh 'mvn compile test'
                 }
             }
         }
